@@ -1,0 +1,20 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: "Build, Tag, and Push Docker Image"
+        run: |
+          echo "${{secrets.DOCKER_HUB_TOKEN}}" | docker login -u gopalkrishnaps --password-stdin
+          docker build -t gopalkrishnaps/intellij-android:2020.1-29 -t gopalkrishnaps/intellij-android:latest .
+          docker push gopalkrishnaps/intellij-android:latest
+          docker push gopalkrishnaps/intellij-android:2020.1-29
