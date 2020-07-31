@@ -1,10 +1,10 @@
 FROM openkbs/ubuntu-bionic-jdk-mvn-py3
 
-ARG INTELLIJ_VERSION="ideaIC-2020.1.1"
+ARG INTELLIJ_VERSION="ideaIC-2020.2"
 ARG INTELLIJ_IDE_TAR=${INTELLIJ_VERSION}.tar.gz
 
 # Find the URLs here: https://developer.android.com/studio
-ARG ANDROID_TOOLS_URL="https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip"
+ARG ANDROID_TOOLS_URL="https://dl.google.com/android/repository/commandlinetools-linux-6609375_latest.zip"
 
 
 WORKDIR /opt
@@ -21,4 +21,4 @@ RUN wget -nv https://download-cf.jetbrains.com/idea/${INTELLIJ_IDE_TAR} && \
     unzip android-tools.zip && \
     rm android-tools.zip && \
     yes | tools/bin/sdkmanager --licenses --sdk_root=/opt/android-sdk && \
-    tools/bin/sdkmanager --sdk_root=/opt/android-sdk "platform-tools" "platforms;android-29"
+    tools/bin/sdkmanager --sdk_root=/opt/android-sdk "platform-tools" "platforms;android-30"
