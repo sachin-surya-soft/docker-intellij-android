@@ -15,6 +15,6 @@ jobs:
       - name: "Build, Tag, and Push Docker Image"
         run: |
           echo "${{secrets.DOCKER_HUB_TOKEN}}" | docker login -u gopalkrishnaps --password-stdin
-          docker build -t gopalkrishnaps/intellij-android:2020.2-30 -t gopalkrishnaps/intellij-android:latest .
+          docker build -t gopalkrishnaps/intellij-android:2020.2-29 -t gopalkrishnaps/intellij-android:latest .
           docker push gopalkrishnaps/intellij-android:latest
-          docker push gopalkrishnaps/intellij-android:2020.2-30
+          docker push gopalkrishnaps/intellij-android:2020.2-29
