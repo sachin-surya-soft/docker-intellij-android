@@ -1,10 +1,10 @@
 FROM openkbs/ubuntu-bionic-jdk-mvn-py3
 
-ARG INTELLIJ_VERSION="ideaIC-2020.2.3"
+ARG INTELLIJ_VERSION="ideaIC-2020.3"
 ARG INTELLIJ_IDE_TAR=${INTELLIJ_VERSION}.tar.gz
 
 # Find the URLs here: https://developer.android.com/studio
-ARG ANDROID_TOOLS_URL="https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip"
+ARG ANDROID_TOOLS_URL="https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
 
 
 WORKDIR /opt
@@ -20,10 +20,5 @@ RUN wget -nv https://download-cf.jetbrains.com/idea/${INTELLIJ_IDE_TAR} && \
     wget -O android-tools.zip -nv ${ANDROID_TOOLS_URL} && \
     unzip android-tools.zip && \
     rm android-tools.zip && \
-    yes | tools/bin/sdkmanager --licenses --sdk_root=/opt/android-sdk && \
-    tools/bin/sdkmanager --sdk_root=/opt/android-sdk "platform-tools" "platforms;android-29" && \
-    wget https://plugins.jetbrains.com/files/6954/96647/kotlin-plugin-1.4.10-release-IJ2020.2-1.zip && \
-    unzip kotlin-plugin-1.4.10-release-IJ2020.2-1.zip && \
-    rm -rf /opt/idea/plugins/Kotlin && \
-    mv Kotlin /opt/idea/plugins/ && \
-    rm kotlin-plugin-1.4.10-release-IJ2020.2-1.zip
+    yes | cmdline-tools/bin/sdkmanager --licenses --sdk_root=/opt/android-sdk && \
+    cmdline-tools/bin/sdkmanager --sdk_root=/opt/android-sdk "platform-tools" "platforms;android-29"
